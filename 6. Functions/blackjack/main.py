@@ -18,19 +18,23 @@ def display_cards (name: str, hand:list):
 
 def calculate_hand_value(hand: list) -> int:
     value = 0
+    aces = 0
 
     for card in hand:
         if card in ["J", "Q", "K"]:
             value += 10
         elif card == "A":
             value += 11
+            aces += 1
         else:
             value += int(card)
-
     
-# TODO: Count Jack, Queen, and King as 10
-# TODO: Count an Ace as 11 when possible
-# TODO: Change an Ace from 11 to 1 if the hand would otherwise go over 21
+    while aces > 0 and value > 21:
+        value -= 10
+        aces -= 1
+    
+    return value
+
 
 # --- 4. PLAYER'S TURN ---
 # TODO: Ask the player to choose "hit" or "stand"
