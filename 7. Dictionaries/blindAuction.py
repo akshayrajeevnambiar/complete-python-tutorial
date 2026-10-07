@@ -1,29 +1,25 @@
-# TODO-1: Ask the user for input
-def get_user_bid() -> list:
-    name = input("please enter your name : ")
-    bid = float(input("please enter your bid amount: "))
-    return name, bid
+import os
 
-def check_next_condition ():
-    choice = input("Would someone else like to add thier bid (y/n)")
-    return True if choice.lower() == 'y' else False
+bids = {}
 
-# TODO-2: Save data into dictionary {name: price}
-def save_user_bids(user_bids: dict):
-    flag = True
-    while flag:
-        clear_screen()
-        name, bid = get_user_bid()
-        user_bids[name] = bid
+choice = "yes"
 
-        flag = check_next_condition()
+while choice != "no":
+    os.system("clear||cls")
+    bidder_name = input("Whats your name: ")
+    bid_amount = int(input("Whats your bid: "))
 
-def check_auction_winner(user_bids: dict):
-    return max(user_bids.values())
+    bids[bidder_name] = bid_amount
 
-def clear_screen():
-    print("\033c", end="")
+    choice = input("Are there anymore bidders(yes/no): ").lower()
 
-user_bids = dict()
-save_user_bids(user_bids)
-print(check_auction_winner(user_bids))
+os.system("clear||cls")
+
+winner_bid = 0
+winner_name = ""
+for key, value in bids.items():
+    if value > winner_bid:
+        winner_bid = value
+        winner_name = key
+
+print(f"Winner {winner_name} for the amount of ${winner_bid}")
