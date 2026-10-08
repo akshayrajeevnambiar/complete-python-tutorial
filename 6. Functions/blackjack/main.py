@@ -27,7 +27,7 @@ def calculate_hand_value(hand: list) -> int:
             value += 10
         elif card == "A":
             value += 11
-            aces += 1
+            aces += 1   
         else:
             value += int(card)
     
